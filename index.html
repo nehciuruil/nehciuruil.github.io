@@ -1,22 +1,41 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>滑块验证</title>
+    <title>nehciuruil | HTML Master</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/v4-shims.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script>
+        // Tailwind 配置
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#165DFF',
-                        success: '#36D399',
-                        danger: '#F87272',
-                        dark: '#1E293B',
-                        light: '#F8FAFC'
+                        neon: {
+                            blue: '#00f3ff',
+                            purple: '#9d00ff',
+                            pink: '#ff00c8',
+                        },
+                        dark: {
+                            900: '#0a0a0a',
+                            800: '#121212',
+                            700: '#1a1a1a',
+                            600: '#242424',
+                        }
+                    },
+                    fontFamily: {
+                        code: ['Consolas', 'Monaco', 'Courier New', 'monospace'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        glow: {
+                            '0%': { textShadow: '0 0 5px #fff, 0 0 10px #fff, 0 0 15px #00f3ff, 0 0 20px #00f3ff' },
+                            '100%': { textShadow: '0 0 10px #fff, 0 0 20px #fff, 0 0 30px #9d00ff, 0 0 40px #9d00ff' },
+                        }
                     }
                 }
             }
@@ -24,451 +43,186 @@
     </script>
     <style type="text/tailwindcss">
         @layer utilities {
-            .slider-track {
-                height: 6px;
-                background: #e2e8f0;
-                border-radius: 3px;
+            .text-shadow-neon {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #00f3ff, 0 0 20px #00f3ff, 0 0 25px #00f3ff;
             }
-            .slider-thumb {
-                width: 36px;
-                height: 36px;
-                background: linear-gradient(135deg, #165DFF 0%, #36D399 100%);
-                border-radius: 50%;
-                box-shadow: 0 3px 10px rgba(22, 93, 255, 0.3);
-                cursor: pointer;
-                transition: all 0.2s ease;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: white;
+            .bg-grid {
+                background-image: 
+                    linear-gradient(rgba(157, 0, 255, 0.1) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(157, 0, 255, 0.1) 1px, transparent 1px);
+                background-size: 20px 20px;
             }
-            .slider-thumb:hover {
-                transform: scale(1.1);
-                box-shadow: 0 4px 12px rgba(22, 93, 255, 0.4);
+            .border-glow {
+                box-shadow: 0 0 5px #00f3ff, 0 0 10px #00f3ff;
             }
-            .puzzle-piece {
-                border-radius: 6px;
-                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-                background: white;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: #165DFF;
-                font-weight: bold;
+            .hover-lift {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
             }
-            .puzzle-shadow {
-                background: rgba(0, 0, 0, 0.1);
-                border-radius: 6px;
-            }
-            .floating {
-                animation: floating 3s ease-in-out infinite;
-            }
-            @keyframes floating {
-                0%, 100% { transform: translateY(0px); }
-                50% { transform: translateY(-8px); }
+            .hover-lift:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0, 243, 255, 0.2);
             }
         }
     </style>
 </head>
-<body class="min-h-screen bg-white font-sans">
-    <!-- 主容器 -->
-    <div class="max-w-2xl mx-auto px-4 py-12">
-        <!-- 标题区域 -->
-        <div class="text-center mb-12">
-            <div class="floating mb-6">
-                <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto">
-                    <i class="fa fa-shield text-white text-2xl"></i>
-                </div>
+<body class="bg-dark-900 text-gray-200 font-code min-h-screen bg-grid">
+    <!-- 终端风格头部 -->
+    <header class="container mx-auto px-4 py-12 md:py-20">
+        <div class="border border-neon-blue/30 bg-dark-800/80 rounded-lg p-6 md:p-8 shadow-lg border-glow">
+            <div class="flex items-center gap-2 mb-2 text-neon-blue">
+                <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                <span class="text-sm ml-2">nehciuruil @ localhost ~ $</span>
+            </div>
+            <div class="pl-2 border-l-2 border-neon-blue/50">
+                <h1 class="text-4xl md:text-6xl font-bold text-white animate-glow mb-2">nehciuruil</h1>
+                <p class="text-xl md:text-2xl text-neon-purple font-medium">
+                    <i class="fa fa-quote-left mr-2"></i>An Oler and A HTML Master.<i class="fa fa-quote-right ml-2"></i>
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- 项目展示区 -->
+    <main class="container mx-auto px-4 pb-20">
+        <section class="mb-12">
+            <div class="flex items-center gap-3 mb-8">
+                <i class="fa fa-code text-3xl text-neon-blue"></i>
+                <h2 class="text-3xl font-bold text-white">
+                    <span class="text-neon-pink">&lt;</span>Projects<span class="text-neon-pink">/&gt;</span>
+                </h2>
             </div>
             
-            <h1 class="text-2xl md:text-3xl font-bold text-dark mb-4">
-                安全验证
-            </h1>
-            <p class="text-gray-600 text-sm md:text-base">
-                验证您是真实用户，验证成功后将重定向到原网站
-            </p>
-        </div>
-
-        <!-- 验证容器 -->
-        <div class="bg-gray-50 rounded-2xl p-6 shadow-lg">
-            <div id="verification-container">
-                <!-- 滑块验证界面 -->
-                <div id="slider-verification" class="text-center">
-                    <!-- 拼图验证区域 -->
-                    <div class="max-w-sm mx-auto mb-6">
-                        <div class="relative bg-gray-100 rounded-lg p-4 mb-4">
-                            <!-- 拼图背景 -->
-                            <div id="puzzle-background" class="w-full h-36 bg-gradient-to-r from-blue-400 to-purple-500 rounded-lg flex items-center justify-center relative overflow-hidden">
-                                <div id="puzzle-shadow" class="puzzle-shadow absolute"></div>
-                                <div id="puzzle-piece" class="puzzle-piece absolute cursor-grab active:cursor-grabbing">
-                                    <i class="fa fa-arrows-h text-lg"></i>
-                                </div>
-                            </div>
-                            
-                            <!-- 滑块轨道 -->
-                            <div class="relative mt-4">
-                                <div class="slider-track w-full"></div>
-                                <div id="slider-thumb" class="slider-thumb absolute">
-                                    <i class="fa fa-hand-pointer-o"></i>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- 提示信息 -->
-                        <div id="verification-hint" class="text-gray-600 text-sm">
-                            按住滑块拖动到正确位置
-                        </div>
+            <!-- 项目卡片网格 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 项目1 -->
+                <div class="bg-dark-700/80 border border-neon-blue/20 rounded-lg p-6 hover-lift">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold text-white">Can-you-speak-properly-</h3>
+                        <a href="https://github.com/nehciuruil/Can-you-speak-properly-" target="_blank" class="text-neon-blue hover:text-neon-pink transition-colors">
+                            <i class="fa fa-github text-xl"></i>
+                        </a>
+                    </div>
+                    <div class="text-gray-400 text-sm mb-4">
+                        <code class="bg-dark-800 px-2 py-1 rounded">github.com/nehciuruil/Can-you-speak-properly-</code>
+                    </div>
+                    <div class="flex items-center text-xs text-gray-500">
+                        <span class="inline-block w-2 h-2 rounded-full bg-neon-blue mr-1"></span>
+                        <span>Repository</span>
                     </div>
                 </div>
 
-                <!-- 验证结果界面 -->
-                <div id="verification-result" class="hidden text-center py-8">
-                    <div id="result-icon" class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"></div>
-                    <h3 id="result-title" class="text-xl font-bold mb-3"></h3>
-                    <p id="result-message" class="text-gray-600 text-sm mb-6"></p>
-                    
-                    <button id="result-button" class="px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300"></button>
+                <!-- 项目2 -->
+                <div class="bg-dark-700/80 border border-neon-blue/20 rounded-lg p-6 hover-lift">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold text-white">Evaluation-machine</h3>
+                        <a href="https://github.com/nehciuruil/Evaluation-machine" target="_blank" class="text-neon-blue hover:text-neon-pink transition-colors">
+                            <i class="fa fa-github text-xl"></i>
+                        </a>
+                    </div>
+                    <div class="text-gray-400 text-sm mb-4">
+                        <code class="bg-dark-800 px-2 py-1 rounded">github.com/nehciuruil/Evaluation-machine</code>
+                    </div>
+                    <div class="flex items-center text-xs text-gray-500">
+                        <span class="inline-block w-2 h-2 rounded-full bg-neon-blue mr-1"></span>
+                        <span>Repository</span>
+                    </div>
+                </div>
+
+                <!-- 项目3 -->
+                <div class="bg-dark-700/80 border border-neon-blue/20 rounded-lg p-6 hover-lift">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold text-white">oi-remake-game</h3>
+                        <a href="https://github.com/nehciuruil/oi-remake-game" target="_blank" class="text-neon-blue hover:text-neon-pink transition-colors">
+                            <i class="fa fa-github text-xl"></i>
+                        </a>
+                    </div>
+                    <div class="text-gray-400 text-sm mb-4">
+                        <code class="bg-dark-800 px-2 py-1 rounded">github.com/nehciuruil/oi-remake-game</code>
+                    </div>
+                    <div class="flex items-center text-xs text-gray-500">
+                        <span class="inline-block w-2 h-2 rounded-full bg-neon-blue mr-1"></span>
+                        <span>Repository</span>
+                    </div>
+                </div>
+
+                <!-- 项目4 -->
+                <div class="bg-dark-700/80 border border-neon-blue/20 rounded-lg p-6 hover-lift">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold text-white">human-machine-verification</h3>
+                        <a href="https://github.com/nehciuruil/human-machine-verification" target="_blank" class="text-neon-blue hover:text-neon-pink transition-colors">
+                            <i class="fa fa-github text-xl"></i>
+                        </a>
+                    </div>
+                    <div class="text-gray-400 text-sm mb-4">
+                        <code class="bg-dark-800 px-2 py-1 rounded">github.com/nehciuruil/human-machine-verification</code>
+                    </div>
+                    <div class="flex items-center text-xs text-gray-500">
+                        <span class="inline-block w-2 h-2 rounded-full bg-neon-blue mr-1"></span>
+                        <span>Repository</span>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- 页脚 -->
-        <div class="text-center mt-12 text-gray-500 text-xs">
-            <p>&copy; 2024 安全验证系统. 保留所有权利.</p>
-        </div>
-    </div>
+        <!-- 终端命令行彩蛋 -->
+        <section class="border border-neon-purple/30 bg-dark-800/80 rounded-lg p-6 md:p-8">
+            <div class="flex items-center gap-2 mb-4 text-neon-purple">
+                <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                <span class="text-sm ml-2">visitor @ browser ~ $ cat about_me.txt</span>
+            </div>
+            <div class="pl-4 space-y-2 text-gray-300">
+                <p><span class="text-neon-blue">&gt;</span> Expert in HTML and competitive programming</p>
+                <p><span class="text-neon-blue">&gt;</span> Passionate about coding and open source</p>
+                <p><span class="text-neon-blue">&gt;</span> Always learning and building new projects</p>
+                <p class="mt-4 text-neon-pink">$ _</p>
+            </div>
+        </section>
+    </main>
 
-    <!-- JavaScript -->
+    <!-- 页脚 -->
+    <footer class="bg-dark-800 border-t border-neon-blue/20 py-6">
+        <div class="container mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>&lt;nehciuruil /&gt; © 2025 | <span class="text-neon-blue">An Oler and A HTML Master</span></p>
+            <div class="mt-3 flex justify-center gap-4">
+                <a href="https://github.com/nehciuruil" target="_blank" class="hover:text-neon-blue transition-colors">
+                    <i class="fa fa-github text-lg"></i>
+                </a>
+                <a href="#" class="hover:text-neon-purple transition-colors">
+                    <i class="fa fa-code text-lg"></i>
+                </a>
+                <a href="#" class="hover:text-neon-pink transition-colors">
+                    <i class="fa fa-terminal text-lg"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 动态效果脚本 -->
     <script>
-        // 全局变量
-        let verificationData = {
-            isDragging: false,
-            startX: 0,
-            currentX: 0,
-            targetX: 0,
-            startTime: 0,
-            dragPoints: [],
-            puzzleSize: { width: 60, height: 60 },
-            verificationThreshold: 0.7, // 70%的相似度阈值
-            isCompleted: false,
-            previousPage: document.referrer || 'https://www.example.com' // 获取上一个页面URL
-        };
+        // 添加打字机效果
+        document.addEventListener('DOMContentLoaded', () => {
+            // 终端光标闪烁
+            setInterval(() => {
+                const cursor = document.querySelector('.mt-4.text-neon-pink');
+                cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+            }, 500);
 
-        // DOM元素
-        let puzzleBackground, puzzleShadow, puzzlePiece, sliderThumb;
-
-        // 页面加载完成后初始化
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeElements();
-            initializePuzzle();
-            initializeEventListeners();
-        });
-
-        // 初始化DOM元素
-        function initializeElements() {
-            puzzleBackground = document.getElementById('puzzle-background');
-            puzzleShadow = document.getElementById('puzzle-shadow');
-            puzzlePiece = document.getElementById('puzzle-piece');
-            sliderThumb = document.getElementById('slider-thumb');
-        }
-
-        // 初始化拼图
-        function initializePuzzle() {
-            // 设置拼图块大小
-            puzzlePiece.style.width = verificationData.puzzleSize.width + 'px';
-            puzzlePiece.style.height = verificationData.puzzleSize.height + 'px';
-            puzzleShadow.style.width = verificationData.puzzleSize.width + 'px';
-            puzzleShadow.style.height = verificationData.puzzleSize.height + 'px';
-
-            // 随机生成目标位置
-            const containerWidth = puzzleBackground.offsetWidth;
-            const containerHeight = puzzleBackground.offsetHeight;
-            
-            // 确保拼图块在背景内
-            const maxX = containerWidth - verificationData.puzzleSize.width - 30;
-            const maxY = containerHeight - verificationData.puzzleSize.height - 15;
-            
-            verificationData.targetX = 30 + Math.random() * maxX;
-            const targetY = 15 + Math.random() * maxY;
-
-            // 设置拼图阴影位置（目标位置）
-            puzzleShadow.style.left = verificationData.targetX + 'px';
-            puzzleShadow.style.top = targetY + 'px';
-
-            // 设置拼图块初始位置（左侧）
-            puzzlePiece.style.left = '15px';
-            puzzlePiece.style.top = targetY + 'px';
-
-            // 设置滑块初始位置
-            sliderThumb.style.left = '0px';
-        }
-
-        // 初始化事件监听器
-        function initializeEventListeners() {
-            // 鼠标事件
-            puzzlePiece.addEventListener('mousedown', startDrag);
-            sliderThumb.addEventListener('mousedown', startDrag);
-            
-            // 触摸事件（移动端支持）
-            puzzlePiece.addEventListener('touchstart', handleTouchStart);
-            sliderThumb.addEventListener('touchstart', handleTouchStart);
-            
-            // 全局事件
-            document.addEventListener('mousemove', handleDrag);
-            document.addEventListener('mouseup', endDrag);
-            document.addEventListener('touchmove', handleTouchMove);
-            document.addEventListener('touchend', handleTouchEnd);
-        }
-
-        // 开始拖动（鼠标）
-        function startDrag(e) {
-            if (verificationData.isCompleted) return;
-            
-            e.preventDefault();
-            verificationData.isDragging = true;
-            verificationData.startX = e.clientX;
-            verificationData.startTime = Date.now();
-            verificationData.dragPoints = [];
-            
-            // 添加拖动样式
-            puzzlePiece.classList.add('cursor-grabbing');
-            sliderThumb.classList.add('cursor-grabbing');
-            document.body.classList.add('cursor-grabbing');
-            
-            // 更新提示
-            document.getElementById('verification-hint').textContent = '拖动到正确位置...';
-            document.getElementById('verification-hint').className = 'text-blue-600 text-sm font-semibold';
-        }
-
-        // 处理拖动（鼠标）
-        function handleDrag(e) {
-            if (!verificationData.isDragging || verificationData.isCompleted) return;
-            
-            e.preventDefault();
-            const containerRect = sliderThumb.parentElement.getBoundingClientRect();
-            const containerWidth = containerRect.width;
-            
-            // 计算拖动距离
-            let deltaX = e.clientX - verificationData.startX;
-            verificationData.currentX = Math.max(0, Math.min(containerWidth - 36, deltaX));
-            
-            // 更新滑块位置
-            sliderThumb.style.left = verificationData.currentX + 'px';
-            
-            // 更新拼图块位置
-            const puzzleRatio = (puzzleBackground.offsetWidth - verificationData.puzzleSize.width - 30) / (containerWidth - 36);
-            const puzzleX = 15 + (verificationData.currentX * puzzleRatio);
-            puzzlePiece.style.left = puzzleX + 'px';
-            
-            // 记录拖动点
-            verificationData.dragPoints.push({
-                x: verificationData.currentX,
-                time: Date.now()
-            });
-        }
-
-        // 结束拖动（鼠标）
-        function endDrag() {
-            if (!verificationData.isDragging || verificationData.isCompleted) return;
-            
-            verificationData.isDragging = false;
-            verificationData.isCompleted = true;
-            
-            // 移除拖动样式
-            puzzlePiece.classList.remove('cursor-grabbing');
-            sliderThumb.classList.remove('cursor-grabbing');
-            document.body.classList.remove('cursor-grabbing');
-            
-            // 分析拖动行为
-            const analysis = analyzeDragBehavior();
-            
-            // 验证结果
-            const isSuccess = analysis.behaviorScore >= verificationData.verificationThreshold;
-            
-            // 显示结果
-            showVerificationResult(isSuccess, analysis);
-        }
-
-        // 开始拖动（触摸）
-        function handleTouchStart(e) {
-            if (verificationData.isCompleted) return;
-            
-            e.preventDefault();
-            const touch = e.touches[0];
-            startDrag(touch);
-        }
-
-        // 处理拖动（触摸）
-        function handleTouchMove(e) {
-            if (!verificationData.isDragging || verificationData.isCompleted) return;
-            
-            e.preventDefault();
-            const touch = e.touches[0];
-            handleDrag(touch);
-        }
-
-        // 结束拖动（触摸）
-        function handleTouchEnd() {
-            endDrag();
-        }
-
-        // 分析拖动行为
-        function analyzeDragBehavior() {
-            const dragPoints = verificationData.dragPoints;
-            if (dragPoints.length < 2) {
-                return {
-                    averageSpeed: 0,
-                    maxAcceleration: 0,
-                    smoothness: 0,
-                    duration: 0,
-                    behaviorScore: 0
-                };
-            }
-
-            // 计算总时间和总距离
-            const totalTime = dragPoints[dragPoints.length - 1].time - dragPoints[0].time;
-            const totalDistance = dragPoints[dragPoints.length - 1].x - dragPoints[0].x;
-            
-            // 计算平均速度
-            const averageSpeed = totalDistance / (totalTime / 1000); // 像素/秒
-            
-            // 计算加速度
-            let speeds = [];
-            let accelerations = [];
-            
-            for (let i = 1; i < dragPoints.length; i++) {
-                const timeDiff = dragPoints[i].time - dragPoints[i - 1].time;
-                const distanceDiff = dragPoints[i].x - dragPoints[i - 1].x;
-                
-                if (timeDiff > 0) {
-                    const speed = distanceDiff / (timeDiff / 1000);
-                    speeds.push(speed);
-                    
-                    if (i > 1) {
-                        const prevSpeed = speeds[i - 2];
-                        const acceleration = (speed - prevSpeed) / (timeDiff / 1000);
-                        accelerations.push(Math.abs(acceleration));
+            // 页面滚动动画
+            const elements = document.querySelectorAll('.hover-lift');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                        observer.unobserve(entry.target);
                     }
-                }
-            }
-            
-            const maxAcceleration = accelerations.length > 0 ? Math.max(...accelerations) : 0;
-            
-            // 计算轨迹平滑度（基于速度变化）
-            let speedChanges = 0;
-            for (let i = 1; i < speeds.length; i++) {
-                const speedDiff = Math.abs(speeds[i] - speeds[i - 1]);
-                if (speedDiff > 50) { // 速度变化超过50像素/秒视为不平稳
-                    speedChanges++;
-                }
-            }
-            
-            const smoothness = speeds.length > 1 ? 
-                1 - (speedChanges / (speeds.length - 1)) : 1;
-            
-            // 计算位置准确性
-            const containerWidth = sliderThumb.parentElement.offsetWidth;
-            const targetPosition = (verificationData.targetX - 15) / 
-                ((puzzleBackground.offsetWidth - verificationData.puzzleSize.width - 30) / (containerWidth - 36));
-            
-            const finalPosition = verificationData.currentX;
-            const positionAccuracy = 1 - Math.min(1, Math.abs(finalPosition - targetPosition) / containerWidth);
-            
-            // 计算行为评分（综合多个因素）
-            const behaviorScore = (
-                positionAccuracy * 0.4 +  // 位置准确性占40%
-                smoothness * 0.3 +        // 轨迹平滑度占30%
-                (1 - Math.min(1, averageSpeed / 1000)) * 0.2 +  // 速度合理性占20%
-                (1 - Math.min(1, maxAcceleration / 5000)) * 0.1  // 加速度合理性占10%
-            );
+                });
+            }, { threshold: 0.1 });
 
-            return {
-                averageSpeed: averageSpeed.toFixed(1),
-                maxAcceleration: maxAcceleration.toFixed(1),
-                smoothness: (smoothness * 100).toFixed(1),
-                duration: (totalTime / 1000).toFixed(2),
-                behaviorScore: behaviorScore
-            };
-        }
-
-        // 显示验证结果
-        function showVerificationResult(isSuccess, analysis) {
-            // 隐藏验证界面，显示结果界面
-            document.getElementById('slider-verification').classList.add('hidden');
-            document.getElementById('verification-result').classList.remove('hidden');
-            
-            const resultIcon = document.getElementById('result-icon');
-            const resultTitle = document.getElementById('result-title');
-            const resultMessage = document.getElementById('result-message');
-            const resultButton = document.getElementById('result-button');
-            
-            if (isSuccess) {
-                // 验证成功 - 重定向到上一个网站
-                resultIcon.className = 'w-20 h-20 bg-success rounded-full flex items-center justify-center mx-auto mb-6';
-                resultIcon.innerHTML = '<i class="fa fa-check text-white text-3xl"></i>';
-                resultTitle.textContent = '验证成功';
-                resultTitle.className = 'text-xl font-bold text-success mb-3';
-                resultMessage.textContent = `正在重定向到 ${verificationData.previousPage}...`;
-                resultMessage.className = 'text-gray-600 text-sm mb-6';
-                
-                resultButton.textContent = '立即跳转';
-                resultButton.className = 'bg-success text-white px-6 py-3 rounded-full text-sm font-semibold hover:bg-green-600 transition-all duration-300';
-                resultButton.onclick = redirectToPreviousPage;
-                
-                // 3秒后自动重定向
-                setTimeout(redirectToPreviousPage, 3000);
-            } else {
-                // 验证失败 - 不重定向
-                resultIcon.className = 'w-20 h-20 bg-danger rounded-full flex items-center justify-center mx-auto mb-6';
-                resultIcon.innerHTML = '<i class="fa fa-times text-white text-3xl"></i>';
-                resultTitle.textContent = '验证失败';
-                resultTitle.className = 'text-xl font-bold text-danger mb-3';
-                resultMessage.textContent = '您的拖动行为可疑，请重新尝试验证。';
-                resultMessage.className = 'text-gray-600 text-sm mb-6';
-                
-                resultButton.textContent = '重新验证';
-                resultButton.className = 'bg-danger text-white px-6 py-3 rounded-full text-sm font-semibold hover:bg-red-600 transition-all duration-300';
-                resultButton.onclick = resetVerification;
-            }
-        }
-
-        // 重定向到上一个页面
-        function redirectToPreviousPage() {
-            window.location.href = verificationData.previousPage;
-        }
-
-        // 重置验证
-        function resetVerification() {
-            verificationData = {
-                isDragging: false,
-                startX: 0,
-                currentX: 0,
-                targetX: 0,
-                startTime: 0,
-                dragPoints: [],
-                puzzleSize: { width: 60, height: 60 },
-                verificationThreshold: 0.7,
-                isCompleted: false,
-                previousPage: verificationData.previousPage // 保留上一个页面URL
-            };
-            
-            // 显示验证界面，隐藏结果界面
-            document.getElementById('slider-verification').classList.remove('hidden');
-            document.getElementById('verification-result').classList.add('hidden');
-            
-            // 重新初始化拼图
-            initializePuzzle();
-            
-            // 重置提示
-            document.getElementById('verification-hint').textContent = '按住滑块拖动到正确位置';
-            document.getElementById('verification-hint').className = 'text-gray-600 text-sm';
-        }
-
-        // 窗口大小变化时重新初始化
-        window.addEventListener('resize', function() {
-            if (!verificationData.isDragging && !verificationData.isCompleted) {
-                initializePuzzle();
-            }
+            elements.forEach(el => observer.observe(el));
         });
     </script>
 </body>
